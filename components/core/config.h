@@ -9,10 +9,10 @@
 #define I2C_SLAVE_PORT 0
 
 /** @brief GPIO number for I2C Slave Serial Data (SDA). */
-#define I2C_SLAVE_SDA_IO 8
+#define I2C_SLAVE_SDA_IO 3
 
 /** @brief GPIO number for I2C Slave Serial Clock (SCL). */
-#define I2C_SLAVE_SCL_IO 9
+#define I2C_SLAVE_SCL_IO 4
 
 /** @brief I2C address of this device when acting as a slave. */
 #define I2C_SLAVE_ADDR 0x12

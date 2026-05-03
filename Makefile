@@ -29,7 +29,7 @@ flash:
 flash-secrets:
 	@bash -c '. $(ESP_IDF_EXPORT) && \
 	python3 $$IDF_PATH/components/nvs_flash/nvs_partition_generator/nvs_partition_gen.py generate secrets.csv secrets.bin 0x4000 && \
-	esptool.py -p $(SERIAL_PORT) -b $(BAUDRATE) write_flash 0x110000 secrets.bin'
+	esptool.py -p $(SERIAL_PORT) -b $(BAUDRATE) --before no_reset --after no_reset write_flash 0x110000 secrets.bin'
 
 monitor:
 	@bash -c '. $(ESP_IDF_EXPORT) && \
