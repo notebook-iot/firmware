@@ -1,4 +1,4 @@
-.PHONY: all setup build flash monitor menuconfig clean erase
+.PHONY: all setup build flash monitor menuconfig clean erase flash-secrets
 
 HOME_DIR        := $(HOME)
 ESP_IDF_EXPORT  := $(HOME)/esp/esp-idf/export.sh
@@ -25,6 +25,11 @@ build:
 flash:
 	@bash -c '. $(ESP_IDF_EXPORT) && \
 	idf.py -p $(SERIAL_PORT) flash'
+
+flash-secrets:
+	@bash -c '. $(ESP_IDF_EXPORT) && \
+	python3 $$IDF_PATH/components/nvs_flash/nvs_partition_generator/nvs_partition_gen.py generate secrets.csv secrets.bin 0x4000 && \
+	esptool.py -p $(SERIAL_PORT) -b $(BAUDRATE) write_flash 0x110000 secrets.bin'
 
 monitor:
 	@bash -c '. $(ESP_IDF_EXPORT) && \
